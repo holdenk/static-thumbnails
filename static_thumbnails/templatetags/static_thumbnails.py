@@ -102,12 +102,6 @@ class StaticThumbnailNode(Node):
         try:
             thumbnailer = get_thumbnailer(static_storage, relative_name=source)
             thumbnail = thumbnailer.get_thumbnail(opts)
-
-            highres_infix = thumbnailer.thumbnail_highres_infix
-            # Add High Resolution URL
-            regular_url = thumbnail.url.split('.')
-            highres_url = '%s%s.%s' % ('.'.join(regular_url[:-1]), highres_infix, regular_url[-1])
-            setattr(thumbnail, 'highres_url', highres_url)
         except Exception:
             if raise_errors:
                 raise
